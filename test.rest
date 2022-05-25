@@ -1,0 +1,11 @@
+GET http://localhost:3000/admin
+
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "hej@hej.se",
+    "password": "hej123"
+}

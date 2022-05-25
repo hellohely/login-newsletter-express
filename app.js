@@ -8,6 +8,7 @@ var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
+var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(cors())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/login', loginRouter)
 
 //Importera mongodb
 const MongoClient = require("mongodb").MongoClient;
@@ -36,7 +38,7 @@ MongoClient.connect("mongodb://localhost:27017", {
     app.locals.db = db;
 })
 
-//Posta till mongodb databas
+//Posta nya användare till mongodb databas
 app.post("/add", function (req, res) {
     req.app.locals.db
       .collection("newsletterlist")
@@ -46,5 +48,10 @@ app.post("/add", function (req, res) {
         res.send("New user added");
       });
   });
+
+//Login
+app.post("/login", function (req, res){
+  //Leta matchande i listan med användare
+}); 
 
 module.exports = app;
