@@ -3,9 +3,10 @@ var router = express.Router();
 
 let users = [];
 
-//Hämta listan med användare från mongodb
-router.get("/", function (req, res, next) {
-  req.app.locals.db
+//Login
+router.post("/", function (req, res) {
+    //Hämta listan med användare från mongodb
+    req.app.locals.db
     .collection("newsletterlist")
     .find()
     .toArray()
@@ -13,24 +14,22 @@ router.get("/", function (req, res, next) {
         users = results;
         //console.log(results)
         //res.send(users)
-        
+        //console.log(users);
+        let foundUser = users.find((user) => {
+            return user.email == req.body.email && user.password == req.body.password
+        })
+      
+        if(foundUser) {
+            //console.log("Inloggning lyckades!");
+            return res.send("Login successful");
+            
+        }
+      
+        res.send("Login failed")
+      });
     });
-});
-
-//Login
-router.post("/", function (req, res) {
   //Leta matchande i listan med användare
-  //console.log(users);
-  let foundUser = users.find((user) => {
-      return user.email == req.body.email && user.password == req.body.password
-  })
+ 
 
-  if(foundUser) {
-      //console.log("Inloggning lyckades!");
-      res.send("Login successful")
-  }
-
-  res.send("Login failed")
-});
 
 module.exports = router;
