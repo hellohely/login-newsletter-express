@@ -43,7 +43,7 @@ app.post("/add", function (req, res) {
       .insertOne(req.body)
       .then((result) => {
         console.log(result);
-        res.redirect("/");
+        res.send("New user added");
       });
   });
 
