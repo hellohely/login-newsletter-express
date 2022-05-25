@@ -24,8 +24,10 @@ router.post("/", function (req, res) {
             return res.send("Login successful");
             
         }
-      
-        res.send("Login failed")
+        
+        res.status("401");
+        res.send("Invalid logon credentials")
+        
       });
     });
   //Leta matchande i listan med användare
