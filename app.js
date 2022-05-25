@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //var router = express.Router();
 var cors = require('cors')
+const nanoId = require("nanoid");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -42,16 +43,13 @@ MongoClient.connect("mongodb://localhost:27017", {
 app.post("/add", function (req, res) {
     req.app.locals.db
       .collection("newsletterlist")
-      .insertOne(req.body)
+      .insertOne({id: nanoId.nanoid(), ...req.body})
       .then((result) => {
         console.log(result);
         res.send("New user added");
       });
   });
 
-//Login
-app.post("/login", function (req, res){
-  //Leta matchande i listan med användare
-}); 
+
 
 module.exports = app;
