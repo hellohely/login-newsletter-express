@@ -8,23 +8,13 @@ router.get("/", function (req, res, next) {
     .find()
     .toArray()
     .then((results) => {
-      let printUsers = "<div><h2>Våra users</h2>";
+      let printUsers = "<div><h2>Registrerade användare</h2>";
 
       for (user in results) {
         printUsers += "<div>" + results[user].email + "</div>";
       }
       printUsers += "</div>";
       res.send(printUsers);
-    });
-});
-
-router.post("/add", function (req, res) {
-  req.app.locals.db
-    .collection("newsletterlist")
-    .insertOne(req.body)
-    .then((result) => {
-      console.log(result);
-      res.redirect("/");
     });
 });
 
