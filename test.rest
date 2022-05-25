@@ -7,5 +7,15 @@ Content-Type: application/json
 
 {
     "email": "hej@hej.se",
-    "password": "hej123"
+    "password": "hej666"
+}
+
+###
+
+POST http://localhost:3000/add
+Content-Type: application/json
+
+{
+    "email": "hej@hej.se",
+    "password": "hej666"
 }

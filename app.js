@@ -45,7 +45,6 @@ app.post("/add", function (req, res) {
       .collection("newsletterlist")
       .insertOne({id: nanoId.nanoid(), ...req.body})
       .then((result) => {
-        console.log(result);
         res.send("New user added");
       });
   });

@@ -11,20 +11,22 @@ router.get("/", function (req, res, next) {
     .toArray()
     .then((results) => {
         users = results;
-        res.send(users)
+        //console.log(results)
+        //res.send(users)
+        
     });
 });
 
 //Login
 router.post("/", function (req, res) {
   //Leta matchande i listan med användare
-  console.log(users);
+  //console.log(users);
   let foundUser = users.find((user) => {
       return user.email == req.body.email && user.password == req.body.password
   })
 
   if(foundUser) {
-      console.log("Inloggning lyckades!");
+      //console.log("Inloggning lyckades!");
       res.send("Login successful")
   }
 
