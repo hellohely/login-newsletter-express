@@ -21,7 +21,7 @@ router.post("/", function (req, res) {
       
         if(foundUser) {
             //console.log("Inloggning lyckades!");
-            return res.send("Login successful");
+            return res.send(foundUser.id);
             
         }
         
