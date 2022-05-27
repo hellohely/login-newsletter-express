@@ -19,3 +19,7 @@ Content-Type: application/json
     "email": "hej@hej.se",
     "password": "hej666"
 }
+
+###
+GET http://localhost:3000/user/getloggedinuser
+

@@ -20,15 +20,10 @@ router.post("/", function (req, res) {
       });
 
       if (foundUser) {
-        //res.cookie("kaka", "testkaka");
-        let userData = {
-          userId: foundUser.id,
-          firstName: foundUser.firstName,
-          lastName: foundUser.lastName,
-          email: foundUser.email,
-          newsletter: foundUser.newsletter,
-        };
-        return res.send(userData);
+        res.cookie("kaka", "testkaka");
+
+        req.session.loggedInUser = foundUser.id;
+        return res.send("Login successful");
       }
 
       res.status("401");
