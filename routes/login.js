@@ -5,33 +5,35 @@ let users = [];
 
 //Login
 router.post("/", function (req, res) {
-    //Hämta listan med användare från mongodb
-    req.app.locals.db
+  //Hämta listan med användare från mongodb
+  req.app.locals.db
     .collection("newsletterlist")
     .find()
     .toArray()
     .then((results) => {
-        users = results;
-        //console.log(results)
-        //res.send(users)
-        //console.log(users);
-        let foundUser = users.find((user) => {
-            return user.email == req.body.email && user.password == req.body.password
-        })
-      
-        if(foundUser) {
-            //console.log("Inloggning lyckades!");
-            return res.send(foundUser.id);
-            
-        }
-        
-        res.status("401");
-        res.send("Invalid logon credentials")
-        
+      //Leta matchande i listan med användare
+      users = results;
+      let foundUser = users.find((user) => {
+        return (
+          user.email == req.body.email && user.password == req.body.password
+        );
       });
-    });
-  //Leta matchande i listan med användare
- 
 
+      if (foundUser) {
+        //res.cookie("kaka", "testkaka");
+        let userData = {
+          userId: foundUser.id,
+          firstName: foundUser.firstName,
+          lastName: foundUser.lastName,
+          email: foundUser.email,
+          newsletter: foundUser.newsletter,
+        };
+        return res.send(userData);
+      }
+
+      res.status("401");
+      res.send("Invalid logon credentials");
+    });
+});
 
 module.exports = router;
