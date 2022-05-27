@@ -2,7 +2,12 @@ var express = require("express");
 const app = require("../app");
 var router = express.Router();
 
+router.post("/", function (req, res, next) {
+  let adminLogin = req.body
+})
+
 router.get("/", function (req, res, next) {
+
   req.app.locals.db
     .collection("newsletterlist")
     .find()
@@ -16,13 +21,14 @@ router.get("/", function (req, res, next) {
 
         if (results[user].newsletter) {
 
-          subscribed += "<div>" + results[user].email + ", </div>";
+          subscribed += results[user].email + ", ";
         }
       }
       printUsers += "</div>";
       subscribed += "</div>";
+      let logOut = "<button>Logga ut</button>"
 
-    let adminPage = printUsers + subscribed;
+    let adminPage = printUsers + subscribed + logOut;
       res.send(adminPage);
     });
 });
