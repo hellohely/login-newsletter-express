@@ -20,7 +20,7 @@ router.post("/", function (req, res) {
       });
 
       if (foundUser) {
-        res.cookie("kaka", "testkaka");
+        //res.cookie("kaka", "testkaka");
 
         req.session.loggedInUser = foundUser.id;
         return res.send("Login successful");
