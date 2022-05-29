@@ -1,4 +1,5 @@
 var express = require("express");
+const { redirect } = require("express/lib/response");
 var router = express.Router();
 
 let users = [];
@@ -42,7 +43,6 @@ router.post("/admin", function (req, res) {
     .then((results) => {
       admin = results;
       let foundAdmin = admin.find((adminlogin) => {
-        console.log(req.body);
         return (
           adminlogin.username == req.body.username &&
           adminlogin.password == req.body.password
@@ -53,7 +53,8 @@ router.post("/admin", function (req, res) {
         //req.session.loggedInAdmin = foundAdmin.username;
         let adminId = foundAdmin._id.toString();
         res.cookie("adminId", adminId )
-        return res.send("Admin login successful");
+        //res.send("Admin login successful");
+        return res.redirect("/admin")
       }
 
       res.status("401");
