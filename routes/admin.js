@@ -35,7 +35,7 @@ router.get("/", function (req, res) {
     }
     printUsers += "</div>";
     subscribed += "</div>";
-    let logOut = "<button>Logga ut</button>";
+    let logOut = '<form action="admin/logout" method="get"><input type="submit" value="Logga ut"></form>'
 
     adminPage = printUsers + subscribed + logOut;
     //return res.send(adminPage);
@@ -60,6 +60,11 @@ router.get("/", function (req, res) {
     }
     res.send(logInForm)
   });
+});
+
+router.get('/logout', function(req, res){
+  res.clearCookie("adminId")
+  res.send('Du är nu utloggad');
 });
 
 

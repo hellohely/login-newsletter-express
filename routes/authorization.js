@@ -58,7 +58,7 @@ router.post("/admin", function (req, res) {
       }
 
       res.status("401");
-      res.send("Invalid admin logon credentials");
+      res.send("Invalid logon credentials");
     });
 });
 
