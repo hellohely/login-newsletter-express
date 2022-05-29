@@ -9,7 +9,7 @@ const nanoId = require("nanoid");
 var indexRouter = require("./routes/index");
 var userRouter = require("./routes/user");
 var adminRouter = require("./routes/admin");
-var loginRouter = require("./routes/login");
+var authorizationRouter = require("./routes/authorization");
 const cookieSession = require("cookie-session");
 const { strict } = require("assert");
 
@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
 
 app.use("/", indexRouter);
 app.use("/admin", adminRouter);
-app.use("/login", loginRouter);
+app.use("/authorization", authorizationRouter);
 app.use("/user", userRouter);
 
 //Importera mongodb
@@ -61,6 +61,10 @@ app.post("/add", function (req, res) {
     .then((result) => {
       res.send("New user added");
     });
+});
+
+app.post("/adminlogin", function (req, res) {
+
 });
 
 module.exports = app;

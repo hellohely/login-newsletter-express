@@ -2,7 +2,7 @@ GET http://localhost:3000/admin
 
 ###
 
-POST http://localhost:3000/login
+POST http://localhost:3000/authorization
 Content-Type: application/json
 
 {
@@ -22,4 +22,14 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/user/getloggedinuser
+
+###
+
+POST http://localhost:3000/authorization/admin
+Content-Type: application/json
+
+{
+    "username" : "admin",
+    "password" : "admin2"
+}
 
