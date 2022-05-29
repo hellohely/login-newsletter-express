@@ -4,7 +4,7 @@ var router = express.Router();
 let users = [];
 let admin = [];
 
-//Login
+//User login
 router.post("/", function (req, res) {
   //Hämta listan med användare från mongodb
   req.app.locals.db
@@ -21,9 +21,10 @@ router.post("/", function (req, res) {
       });
 
       if (foundUser) {
-        //res.cookie("kaka", "testkaka");
+        let userId = foundUser._id.toString();
+        res.cookie("userId", userId);
 
-        req.session.loggedInUser = foundUser.id;
+        //req.session.loggedInUser = foundUser.id;
         return res.send("Login successful");
       }
 
@@ -32,6 +33,7 @@ router.post("/", function (req, res) {
     });
 });
 
+//Admin login
 router.post("/admin", function (req, res) {
   req.app.locals.db
     .collection("adminlogin")
@@ -40,6 +42,7 @@ router.post("/admin", function (req, res) {
     .then((results) => {
       admin = results;
       let foundAdmin = admin.find((adminlogin) => {
+        console.log(req.body);
         return (
           adminlogin.username == req.body.username &&
           adminlogin.password == req.body.password
@@ -47,12 +50,14 @@ router.post("/admin", function (req, res) {
       });
 
       if (foundAdmin) {
-        req.session.loggedInAdmin = foundAdmin.id;
+        //req.session.loggedInAdmin = foundAdmin.username;
+        let adminId = foundAdmin._id.toString();
+        res.cookie("adminId", adminId )
         return res.send("Admin login successful");
       }
 
       res.status("401");
-      res.send("Invalid logon credentials")
+      res.send("Invalid admin logon credentials");
     });
 });
 

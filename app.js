@@ -10,7 +10,7 @@ var indexRouter = require("./routes/index");
 var userRouter = require("./routes/user");
 var adminRouter = require("./routes/admin");
 var authorizationRouter = require("./routes/authorization");
-const cookieSession = require("cookie-session");
+//const cookieSession = require("cookie-session");
 const { strict } = require("assert");
 
 var app = express();
@@ -21,19 +21,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
-app.use(
-  cookieSession({
-    secret: "MySecretKey",
-    maxAge: 1000 * 60 * 30,
-    //sameSite: true,
-    httpOnly: false,
-    secure: false,
-  })
-);
-app.use(function (req, res, next) {
-  req.session.nowInMinutes = Math.floor(Date.now() / 60e3);
-  next();
-});
+// app.use(
+//   cookieSession({
+//     secret: "MySecretKey",
+//     maxAge: 1000 * 60 * 30,
+//     //sameSite: true,
+//     httpOnly: false,
+//     secure: false,
+//   })
+// );
+// app.use(function (req, res, next) {
+//   req.session.nowInMinutes = Math.floor(Date.now() / 60e3);
+//   next();
+// });
 
 app.use("/", indexRouter);
 app.use("/admin", adminRouter);
@@ -57,14 +57,10 @@ MongoClient.connect("mongodb://localhost:27017", {
 app.post("/add", function (req, res) {
   req.app.locals.db
     .collection("newsletterlist")
-    .insertOne({ id: nanoId.nanoid(), ...req.body })
+    .insertOne(req.body)
     .then((result) => {
       res.send("New user added");
     });
-});
-
-app.post("/adminlogin", function (req, res) {
-
 });
 
 module.exports = app;
