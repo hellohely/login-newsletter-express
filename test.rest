@@ -25,11 +25,18 @@ GET http://localhost:3000/user/getloggedinuser
 
 ###
 
-POST http://localhost:3000/authorization/admin
+POST http://localhost:3000/admin/login
 Content-Type: application/json
 
 {
     "username" : "admin",
     "password" : "admin"
+}
+
+POST http://localhost:3000/userdata
+Content-Type: application/json
+
+{
+    "userId" : "6293b2299df07879c48cabb2"
 }
 

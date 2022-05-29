@@ -63,4 +63,32 @@ app.post("/add", function (req, res) {
     });
 });
 
+app.post("/userdata", function (req, res) {
+  //Hämta listan med användare från mongodb
+  req.app.locals.db
+    .collection("newsletterlist")
+    .find()
+    .toArray()
+    .then((results) => {
+      //Leta matchande i listan med användare
+      users = results;
+      let foundUser = users.find((user) => {
+        return (
+          user._id == req.body.userId
+        );
+      });
+
+      if (foundUser) {
+        console.log("Användare hittad", foundUser);
+
+        //req.session.loggedInUser = foundUser.id;
+
+        let userData = { name: foundUser.firstName, newsletter: foundUser.newsletter }
+        return res.send(userData);
+      }
+
+      return res.send("user id not found")
+})}
+);
+
 module.exports = app;
