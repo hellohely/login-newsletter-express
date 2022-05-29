@@ -13,6 +13,7 @@ var authorizationRouter = require("./routes/authorization");
 //const cookieSession = require("cookie-session");
 const { strict } = require("assert");
 const { send } = require("process");
+const { ObjectId } = require("mongodb");
 
 var app = express();
 
@@ -97,11 +98,11 @@ app.post("/newslettersettings", function (req, res) {
   req.app.locals.db
     .collection("newsletterlist")
     .updateOne(
-      { _id: JSON.stringify(req.body.userId) },
-      { $set: { newsletter: JSON.stringify(req.body.newsletter) } }
+      { _id: new ObjectId(req.body.userId) },
+      { $set: { newsletter: req.body.newsletter } }
     );
-    console.log(JSON.stringify(req.body.newsletter));
-    res.send("newsletter settings updated")
+
+  res.send("newsletter settings updated");
 });
 
 module.exports = app;
