@@ -6,8 +6,8 @@ POST http://localhost:3000/authorization
 Content-Type: application/json
 
 {
-    "email": "test@test.se",
-    "password": "test123"
+    "email": "vov@hund.se",
+    "password": "kissapåstolpe"
 }
 
 ###
@@ -16,8 +16,8 @@ POST http://localhost:3000/add
 Content-Type: application/json
 
 {
-    "email": "hej@hej.se",
-    "password": "hej666"
+    "email": "vov@hund.se",
+    "password": "kissapåstolpe"
 }
 
 ###
@@ -33,10 +33,22 @@ Content-Type: application/json
     "password" : "admin"
 }
 
+###
+
 POST http://localhost:3000/userdata
 Content-Type: application/json
 
 {
-    "userId" : "6293b2299df07879c48cabb2"
+    "userId" : "6293e5bad5e825904be5fddf"
+}
+
+###
+
+POST http://localhost:3000/newslettersettings
+Content-Type: application/json
+
+{
+    "userId" : "6293b2429df07879c48cabb3",
+    "newsletter" : "false"
 }
 

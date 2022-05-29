@@ -12,6 +12,7 @@ var adminRouter = require("./routes/admin");
 var authorizationRouter = require("./routes/authorization");
 //const cookieSession = require("cookie-session");
 const { strict } = require("assert");
+const { send } = require("process");
 
 var app = express();
 
@@ -73,9 +74,7 @@ app.post("/userdata", function (req, res) {
       //Leta matchande i listan med användare
       users = results;
       let foundUser = users.find((user) => {
-        return (
-          user._id == req.body.userId
-        );
+        return user._id == req.body.userId;
       });
 
       if (foundUser) {
@@ -83,12 +82,26 @@ app.post("/userdata", function (req, res) {
 
         //req.session.loggedInUser = foundUser.id;
 
-        let userData = { name: foundUser.firstName, newsletter: foundUser.newsletter }
+        let userData = {
+          name: foundUser.firstName,
+          newsletter: foundUser.newsletter,
+        };
         return res.send(userData);
       }
 
-      return res.send("user id not found")
-})}
-);
+      return res.send("user id not found");
+    });
+});
+
+app.post("/newslettersettings", function (req, res) {
+  req.app.locals.db
+    .collection("newsletterlist")
+    .updateOne(
+      { _id: JSON.stringify(req.body.userId) },
+      { $set: { newsletter: JSON.stringify(req.body.newsletter) } }
+    );
+    console.log(JSON.stringify(req.body.newsletter));
+    res.send("newsletter settings updated")
+});
 
 module.exports = app;
