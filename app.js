@@ -4,10 +4,9 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 //var router = express.Router();
 var cors = require("cors");
-const nanoId = require("nanoid");
+//const nanoId = require("nanoid");
 
 var indexRouter = require("./routes/index");
-var userRouter = require("./routes/user");
 var adminRouter = require("./routes/admin");
 var authorizationRouter = require("./routes/authorization");
 //const cookieSession = require("cookie-session");
@@ -40,7 +39,6 @@ app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
 app.use("/", indexRouter);
 app.use("/admin", adminRouter);
 app.use("/authorization", authorizationRouter);
-app.use("/user", userRouter);
 
 //Importera mongodb
 const MongoClient = require("mongodb").MongoClient;
