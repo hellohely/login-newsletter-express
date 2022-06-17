@@ -1,0 +1,56 @@
+{ 
+    "_id" : ObjectId("6293b2299df07879c48cabb2"), 
+    "firstName" : "Anna", 
+    "lastName" : "Andersson", 
+    "email" : "anna@mail.se", 
+    "password" : "anna123", 
+    "newsletter" : true
+}
+{ 
+    "_id" : ObjectId("6293b2429df07879c48cabb3"), 
+    "firstName" : "Tomas", 
+    "lastName" : "Tomat", 
+    "email" : "tomaten@hotmail.se", 
+    "password" : "jagälskartomat", 
+    "newsletter" : "false"
+}
+{ 
+    "_id" : ObjectId("6293b25d9df07879c48cabb4"), 
+    "firstName" : "Herbert", 
+    "lastName" : "Hund", 
+    "email" : "vov@hund.com", 
+    "password" : "kissapåstolpe", 
+    "newsletter" : "false"
+}
+{ 
+    "_id" : ObjectId("6293b2849df07879c48cabb5"), 
+    "firstName" : "Edward", 
+    "lastName" : "Blom", 
+    "email" : "edward@blom.se", 
+    "password" : "GEMIGSMÖR", 
+    "newsletter" : true
+}
+{ 
+    "_id" : ObjectId("6293b2b29df07879c48cabb6"), 
+    "firstName" : "Raggar-Bengan", 
+    "lastName" : "Raggarsson", 
+    "email" : "ragga@runt.se", 
+    "password" : "wrooooom123", 
+    "newsletter" : true
+}
+{ 
+    "_id" : ObjectId("629407b5097ee7c79bd11544"), 
+    "firstName" : "Anders", 
+    "lastName" : "Borg", 
+    "email" : "anders@borg.se", 
+    "password" : "helikopter", 
+    "newsletter" : "false"
+}
+{ 
+    "_id" : ObjectId("6294cfaab37abd6f3876ad2b"), 
+    "firstName" : "Lasse", 
+    "lastName" : "Testman", 
+    "email" : "lars@test.se", 
+    "password" : "lars", 
+    "newsletter" : "false"
+}
